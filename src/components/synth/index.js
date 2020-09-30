@@ -16,9 +16,18 @@ export default () => {
     const synth = state.mode === 'light' ? new FMSynth() : new DuoSynth()
     synth.toDestination()
 
+    const playSound = targetLetter => {
+        const foundNote = state.notes.find(({letter }) => === targetLetter)
+        if (foundNote) {
+            synth.triggerAttackRelease(foundNote.note, '8n')
+
+        }
+
+    }
+
     return (
         <div style={styles}>
-           {state.notes.map(note => <Pad {...note} key={note.letter} />)}
+           {state.notes.map(note => <Pad {...note} playSound={playSound} key={note.letter} />)}
         </div>
 
     )

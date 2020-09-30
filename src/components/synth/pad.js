@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-export default ({ letter, note, color }) =>{
+export default ({ letter, note, color, playSound }) =>{
 
     
 const styles ={
@@ -14,7 +14,7 @@ const styles ={
 
 }
     return (
-    <button style={styles}>{note}</button>
+    <button onClick ={() => playSound(letter)} style={styles}>{note}</button>
 
     )
 
